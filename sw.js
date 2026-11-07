@@ -1,5 +1,5 @@
 /* Offline cache. Bump VERSION when the app changes so phones pick up the update. */
-const VERSION = "v1";
+const VERSION = "v2";
 const CACHE = "quest-ledger-" + VERSION;
 const FILES = ["./", "index.html", "manifest.webmanifest", "icons/icon-192.png", "icons/icon-512.png", "icons/icon-maskable-512.png", "fonts/alegreya-sans-latin-400-normal.woff2", "fonts/alegreya-sans-latin-500-normal.woff2", "fonts/alegreya-sans-latin-700-normal.woff2", "fonts/alegreya-sc-latin-500-normal.woff2", "fonts/alegreya-sc-latin-700-normal.woff2", "fonts/ibm-plex-mono-latin-400-normal.woff2", "fonts/ibm-plex-mono-latin-500-normal.woff2"];
 self.addEventListener("install", function (e) {

@@ -457,7 +457,7 @@ function nextHtml(V){
   var items=V.next.slice(0,6);
   var h='<section class="panel" aria-labelledby="h-next"><h2 id="h-next">Do next</h2><div class="sub">In guide order, skipping anything that would cut off something you still need.</div>';
   if(!items.length){
-    h+='<div class="empty">'+(V.done?"Nothing left on the main route. Check the side quests below or the ledger for anything you ran past.":"Tick the quests you have already done (the steps before them are ticked for you) and the next ones appear here.")+'</div>'+anytimeHtml(V)+'</section>';
+    h+='<div class="empty">'+(V.done?"Nothing left on the main route. Check the side quests below or the ledger for anything you ran past.":"Tick the quests you have already done and the next ones appear here.")+'</div>'+anytimeHtml(V)+'</section>';
     return h;
   }
   h+='<ul class="plist">';
@@ -611,10 +611,11 @@ function render(){
 }
 
 /* ---------- events ---------- */
-/* Ticking a quest also ticks the steps that must come before it. */
+/* Ticking a quest ticks only that quest. The one exception is the finishing step of a quest with a stop point, which also ticks its own stop point. */
 function markDone(k){
   S.s[k]=1;
-  byKey[k].needs.forEach(function(n){if(!st(n))markDone(n);});
+  var pq=byKey[k].partQ;
+  if(pq&&!st(pq.key))S.s[pq.key]=1;
 }
 function jump(k){
   var q=byKey[k];if(!q)return;
